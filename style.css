@@ -1,0 +1,49 @@
+html {
+    background-color: white;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 5px;
+    padding: 0;
+}
+
+#mainContainer {
+    text-align: center;
+    font-family: 'Tahoma', sans-serif;
+    height: 100%;
+    margin: 5px;
+}
+
+#playerInfoScreen {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+}
+
+#playerInfo {
+    height: 100%;
+    width: 50%;
+    border-right: 5px solid;
+}
+
+#boardDisplay {
+    height: 100%;
+    width: 50%;
+    background-color: rgb(255, 199, 0);
+    margin
+}
+
+#infoContainer {
+    margin-top: 50%;
+}
+
+#gameContainer {
+    margin-top: 50%;
+}
