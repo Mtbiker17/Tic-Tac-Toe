@@ -1,6 +1,7 @@
 const playerLetter = document.getElementById('playerLetter');
 const playerName = document.getElementById('playerName');
 const userInfoSubmit = document.getElementById('submitButton');
+const difficulty = document.getElementById('difficulty');
 
 const gameBoard = (() => {
     const blockZero = '0';
@@ -19,16 +20,16 @@ const gameBoard = (() => {
 })();
 
 //player factory function
-const Player = (userName, userLetter, computerLetter) => {
+const Player = (userName, userLetter, computerLetter, difficultyChoice) => {
     const getPlayerName = () => userName
     const getPlayerLetter = () => userLetter
-    return { userName, userLetter, computerLetter };
+    return { userName, userLetter, computerLetter, difficultyChoice };
 };
 
 //object to control the flow of the game
 const gamePlay = (() => {
     const play = () => {
-        //make a moves here
+        
     }
 
 })();
@@ -36,16 +37,17 @@ const gamePlay = (() => {
 userInfoSubmit.addEventListener('click', () => {
     let userNameInput = playerName.value;
     let userLetterInput = playerLetter.value;
+    let difficultyChoice = difficulty.value;
     let computerLetter = '';
     if (userNameInput === "") {
         userNameInput = 'Earthborn';
-    }
+    };
     if (userLetterInput === 'o') {
         computerLetter = 'x';
     } else if (userLetterInput === 'x') {
         computerLetter = 'o';
-    }
-    const player = Player(userNameInput, userLetterInput, computerLetter);
+    };
+    const player = Player(userNameInput, userLetterInput, computerLetter, difficultyChoice);
     console.log(player);
 });
 
