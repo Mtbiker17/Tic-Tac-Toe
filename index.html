@@ -5,52 +5,39 @@
     <meta charset="UTF-8">
     <title>Tic-Tac-Toe</title>
     <link rel="stylesheet" href="style.css">
-    
+
 </head>
 
 <body>
-    <label for="playerName">Player Name:</label>
-    <input type="text" id="playerName"><br><br>
-    <label>Player Letter:</label>
-    <select id="playerLetter">
-        <option value='x'>X</option>
-        <option value='o'>O</option>
-    </select><br><br>
-
-    <button type='submit' id='submitButton'>Enter Information</button>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <div id='mainContainer'>
+        <div id='playerInfoScreen'>
+            <div id='playerInfo'>
+                <div id='infoContainer'>
+                    <p>Enter Player Information</p>
+                    <label>Player Name:</label>
+                    <input type="text" id="playerName"><br><br>
+                    <label>Player Letter:</label>
+                    <select id="playerLetter">
+                        <option value='x'>X</option>
+                        <option value='o'>O</option>
+                    </select><br><br>
+                    <label>Select Difficulty:</label>
+                    <select id="difficulty">
+                        <option value='easy'>Easy</option>
+                        <option value='medium'>Medium</option>
+                        <option value='hard'>Hard</option>
+                        <option value='impossible'>Impossible</option>
+                    </select><br><br>
+                    <button type='submit' id='submitButton'>Enter Information</button>
+                </div>
+            </div>
+            <div id='boardDisplay'>
+                <div id='gameContainer'>
+                    <p>Hello There</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script type="text/javascript" src="javaScript.js"></script>
 
