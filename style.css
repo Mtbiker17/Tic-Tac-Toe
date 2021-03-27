@@ -24,26 +24,69 @@ body {
     align-items: center;
     height: 100%;
     width: 100%;
-
 }
 
-#playerInfo {
+#userMain {
     height: 100%;
     width: 50%;
     border-right: 5px solid;
+}
+
+#playerInfo {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 50%;
+    border-right: 5px solid;
+    display: none;
+}
+
+#computerInfo {
+    height: 100%;
+    width: 50%;
+    border-right: 5px solid;
+    display: none;
+
 }
 
 #boardDisplay {
     height: 100%;
     width: 50%;
     background-color: rgb(255, 199, 0);
-    margin
+}
+
+#userMainWrap {
+    margin-top: 30%;
 }
 
 #infoContainer {
-    margin-top: 50%;
+    margin-top: 30%;
+}
+
+#computerContainer {
+    margin-top: 30%;
 }
 
 #gameContainer {
-    margin-top: 50%;
+    margin-top: 10%;
+}
+
+#gameTitle {
+    font-size: 400%;
+}
+
+td {
+  width: 100px;
+  height: 100px;
+}
+table {
+  margin: 5px auto;
+}
+.vertical {
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+}
+.horizontal {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
 }

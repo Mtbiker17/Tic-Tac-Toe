@@ -5,19 +5,47 @@
     <meta charset="UTF-8">
     <title>Tic-Tac-Toe</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
     <div id='mainContainer'>
         <div id='playerInfoScreen'>
+            <div id='userMain'>
+                <div id='userMainWrap'>
+                    <h1>Please Choose Game Mode</h1>
+                    <button id='playerVPlayer'>Player Versus Player</button>
+                    <br><br><br>
+                    <button id='playerVComputer'>Player Versus Computer</button>
+                </div>
+            </div>
             <div id='playerInfo'>
                 <div id='infoContainer'>
                     <p>Enter Player Information</p>
+                    <label>Player One Name:</label>
+                    <input type="text" id="playerOneName"><br><br>
+                    <label>Player One Letter:</label>
+                    <select id="playerOneLetter">
+                        <option value='select'>Select Letter</option>
+                        <option value='x'>X</option>
+                        <option value='o'>O</option>
+                    </select><br><br>
+                    <label>Player Two Name:</label>
+                    <input type="text" id="playerTwoName"><br><br>
+                    <label>Player Two Letter:</label>
+                    <div id="playerTwoLetter"></div>
+                    <br><br>
+                    <button type='submit' id='submitButton'>Start Game!</button>
+                    <br><br>
+                    <button type='submit' id='backToMain'>Back To Main Page</button>
+                </div>
+            </div>
+            <div id='computerInfo'>
+                <div id='computerContainer'>
+                    <p>Enter Player Information</p>
                     <label>Player Name:</label>
-                    <input type="text" id="playerName"><br><br>
+                    <input type="text" id="playerVersusComputerName"><br><br>
                     <label>Player Letter:</label>
-                    <select id="playerLetter">
+                    <select id="playerVersusComputerLetter">
                         <option value='x'>X</option>
                         <option value='o'>O</option>
                     </select><br><br>
@@ -28,12 +56,30 @@
                         <option value='hard'>Hard</option>
                         <option value='impossible'>Impossible</option>
                     </select><br><br>
-                    <button type='submit' id='submitButton'>Enter Information</button>
+                    <button type='submit' id='submitButton2'>Start Game!</button><br><br>
+                    <button type='submit' id='backToMain2'>Back To Main Page</button>
                 </div>
             </div>
             <div id='boardDisplay'>
+                <h2 id='gameTitle'>Tic-Tac-Toe</h2>
                 <div id='gameContainer'>
-                    <p>Hello There</p>
+                    <table>
+                        <tr>
+                            <td id='blockOne'></td>
+                            <td id="blockTwo" class='vertical'></td>
+                            <td id='blockThree'></td>
+                        </tr>
+                        <tr>
+                            <td id='blockFour' class="horizontal"></td>
+                            <td id='blockFive' class="vertical horizontal"></td>
+                            <td id='blockSix' class="horizontal"></td>
+                        </tr>
+                        <tr>
+                            <td id='blockSeven'></td>
+                            <td id='blockEight' class="vertical"></td>
+                            <td id='blockNine'></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
