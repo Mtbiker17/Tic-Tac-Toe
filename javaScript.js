@@ -35,6 +35,22 @@ submitButton.addEventListener('click', () => {
         removeMain();
         console.log({ player1, player2 });
 
+        if (play === true) {
+            gameBlocks.forEach(gameBlocks => {
+                gameBlocks.textContent = "";
+            });
+            gameBlocks.forEach(block => {
+                block.addEventListener('click', (e) => {
+                    if(e.target.textContent === 'O' || e.target.textContent === 'X'){
+                        return;
+                    }
+                    if(player1.turn === true)
+                    e.target.textContent = `${player1.letter}`;
+
+                })
+            })
+        }
+
         const winCombos = [
             [0, 1, 2],
             [0, 3, 6],
@@ -55,7 +71,6 @@ const displayController = (() => {
     gameBlocks.forEach(gameBlocks => {
         gameBlocks.textContent = "";
     })
-
 })();
 
 function removeMain() {
