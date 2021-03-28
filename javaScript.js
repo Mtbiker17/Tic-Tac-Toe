@@ -1,6 +1,4 @@
-const playerOneLetter = document.getElementById('playerOneLetter');
 const playerOneName = document.getElementById('playerOneName');
-const playerTwoLetter = document.getElementById('playerTwoLetter');
 const playerTwoName = document.getElementById('playerTwoName');
 const playerInfo = document.getElementById('playerInfo');
 const computerInfo = document.getElementById('computerInfo');
@@ -10,58 +8,56 @@ const backtoMain2 = document.getElementById('backToMain2');
 const playerVPlayer = document.getElementById('playerVPlayer');
 const playerVComputer = document.getElementById('playerVComputer');
 const playerVersusComputerName = document.getElementById('playerVersusComputerName');
-const playerVersusComputerLetter = document.getElementById('playerVersusComputerLetter');
 const submitButton = document.getElementById('submitButton');
 const submitButton2 = document.getElementById('submitButton2');
 const boardDisplay = document.getElementById('boardDisplay');
 const difficulty = document.getElementById('difficulty');
+const gameBlocks = document.querySelectorAll('[data-block]');
+let play = false;
 
+
+
+const displayController = (() => {
+    gameBlocks.forEach(gameBlocks => {
+        gameBlocks.textContent = "";
+    })
+
+})();
+
+
+const getPlayers = (() => {
+    const Player = (name, letter, turn) => {
+        return { name, letter, turn };
+    };
+
+    submitButton.addEventListener('click', () => {
+        let playerOne = playerOneName.value;
+        let playerTwo = playerTwoName.value;
+        if (playerOne === "") {
+            playerOne = 'Player 1';
+        }
+        if (playerTwo === "") {
+            playerTwo = 'Player 2';
+        }
+        const player1 = Player(playerOne, 'O', true);
+        const player2 = Player(playerTwo, 'X', false);
+        removeMain();
+        console.log({player1, player2});
+    });
+})();
+
+
+
+
+//object to control the flow of the game
 const gameBoard = (() => {
-    const blockZero = '0';
-    const blockOne = '1';
-    const blockTwo = '2';
-    const blockThree = '3';
-    const blockFour = '4';
-    const blockFive = '5';
-    const blockSix = '6';
-    const blockSeven = '7';
-    const blockEight = '8';
-    const boardArray = [blockZero, blockOne, blockTwo, blockThree, blockFour, blockFive,
-          blockSix, blockSeven, blockEight];
+
+
+
+    let boardArray = [];
     return { boardArray };
 })();
 
-//player factory function
-const PVP = (playerOne, playerOneChoice, playerTwo, playerTwoChoice) => {
-    if (playerOne === "" || playerTwo === "") {
-        playerOne = 'Earthborn One';
-        playerTwo = 'Earthborn Two';
-    }
-    if (playerOneChoice === 'o') {
-        playerTwoChoice = 'x';
-    } else if (playerOneChoice === 'x') {
-        playerTwoChoice = 'o';
-    };
-    return { playerOne, playerOneChoice, playerTwo, playerTwoChoice };
-};
-
-const PVC = (playerVCompName, playerVCompLetter, computerLetter, difficultyChoice) => {
-    if (playerVCompName === "") {
-        playerVCompName = 'Earthborn One';
-    }
-    if (playerVCompLetter === 'o') {
-        computerLetter = 'x';
-    } else if (playerVCompLetter === 'x') {
-        computerLetter = 'o';
-    };
-    return { playerVCompName, playerVCompLetter, computerLetter, difficultyChoice };
-};
-
-//object to control the flow of the game
-const gamePlay = (() => {
-
-
-})();
 
 function removeMain() {
     userMain.remove();
@@ -71,30 +67,6 @@ function removeMain() {
     boardDisplay.style.width = "100%";
     boardDisplay.style.height = "100%";
 }
-
-submitButton.addEventListener('click', () => {
-    let playerOne = playerOneName.value;
-    let playerOneChoice = playerOneLetter.value;
-    let playerTwo = playerTwoName.value;
-    let playerTwoChoice = "";
-    if(playerOneLetter.value === "select"){
-        alert("You must choose a letter to play");
-        return;
-    }
-    const player = PVP(playerOne, playerOneChoice, playerTwo, playerTwoChoice);
-    removeMain();
-    console.log(player);
-});
-
-submitButton2.addEventListener('click', () => {
-    let playerVCompName = playerVersusComputerName.value;
-    let playerVCompLetter = playerVersusComputerLetter.value;
-    let difficultyChoice = difficulty.value;
-    let computerLetter = "";
-    const playerVersusComputer = PVC(playerVCompName, playerVCompLetter, computerLetter, difficultyChoice)
-    removeMain();
-    console.log(playerVersusComputer);
-});
 
 playerVPlayer.addEventListener('click', () => {
     userMain.style.display = "none";
@@ -116,3 +88,26 @@ backToMain2.addEventListener('click', () => {
     computerInfo.style.display = "none";
 });
 
+
+/*const blockZero = document.getElementById('blockZero');
+const blockOne = document.getElementById('blockOne');
+const blockTwo = document.getElementById('blockTwo');
+const blockThree = document.getElementById('blockThree');
+const blockFour = document.getElementById('blockFour');
+const blockFive = document.getElementById('blockFive');
+const blockSix = document.getElementById('blockSix');
+const blockSeven = document.getElementById('blockSeven');
+const blockEight = document.getElementById('blockEight');*/
+
+/*submitButton2.addEventListener('click', () => {
+       let userName = playerVersusComputerName.value;
+       let difficultyChoice = difficulty.value;
+       if (userName === "") {
+           userName = 'Player 1';
+       }
+       removeMain();
+       return (user1 = PVC(userName, 'O', 'X', difficultyChoice));
+   });
+   const PVC = (userName, userLetter, computerLetter, difficultyChoice) => {
+       return { userName, userLetter, computerLetter, difficultyChoice };
+   };*/

@@ -23,16 +23,8 @@
                     <p>Enter Player Information</p>
                     <label>Player One Name:</label>
                     <input type="text" id="playerOneName"><br><br>
-                    <label>Player One Letter:</label>
-                    <select id="playerOneLetter">
-                        <option value='select'>Select Letter</option>
-                        <option value='x'>X</option>
-                        <option value='o'>O</option>
-                    </select><br><br>
                     <label>Player Two Name:</label>
                     <input type="text" id="playerTwoName"><br><br>
-                    <label>Player Two Letter:</label>
-                    <div id="playerTwoLetter"></div>
                     <br><br>
                     <button type='submit' id='submitButton'>Start Game!</button>
                     <br><br>
@@ -44,11 +36,6 @@
                     <p>Enter Player Information</p>
                     <label>Player Name:</label>
                     <input type="text" id="playerVersusComputerName"><br><br>
-                    <label>Player Letter:</label>
-                    <select id="playerVersusComputerLetter">
-                        <option value='x'>X</option>
-                        <option value='o'>O</option>
-                    </select><br><br>
                     <label>Select Difficulty:</label>
                     <select id="difficulty">
                         <option value='easy'>Easy</option>
@@ -65,19 +52,19 @@
                 <div id='gameContainer'>
                     <table>
                         <tr>
-                            <td id='blockOne'></td>
-                            <td id="blockTwo" class='vertical'></td>
-                            <td id='blockThree'></td>
+                            <td id='blockZero' data-block></td>
+                            <td id="blockOne" class='vertical' data-block></td>
+                            <td id='blockTwo' data-block></td>
                         </tr>
                         <tr>
-                            <td id='blockFour' class="horizontal"></td>
-                            <td id='blockFive' class="vertical horizontal"></td>
-                            <td id='blockSix' class="horizontal"></td>
+                            <td id='blockThree' class="horizontal" data-block></td>
+                            <td id='blockFour' class="vertical horizontal" data-block></td>
+                            <td id='blockFive' class="horizontal" data-block></td>
                         </tr>
                         <tr>
-                            <td id='blockSeven'></td>
-                            <td id='blockEight' class="vertical"></td>
-                            <td id='blockNine'></td>
+                            <td id='blockSix' data-block></td>
+                            <td id='blockSeven' class="vertical" data-block></td>
+                            <td id='blockEight' data-block></td>
                         </tr>
                     </table>
                 </div>
