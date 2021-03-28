@@ -15,22 +15,13 @@ const difficulty = document.getElementById('difficulty');
 const gameBlocks = document.querySelectorAll('[data-block]');
 let play = false;
 
+submitButton.addEventListener('click', () => {
+    play = true;
+    const Gameboard = (() => {
+        const Player = (name, letter, turn) => {
+            return { name, letter, turn };
+        };
 
-
-const displayController = (() => {
-    gameBlocks.forEach(gameBlocks => {
-        gameBlocks.textContent = "";
-    })
-
-})();
-
-
-const getPlayers = (() => {
-    const Player = (name, letter, turn) => {
-        return { name, letter, turn };
-    };
-
-    submitButton.addEventListener('click', () => {
         let playerOne = playerOneName.value;
         let playerTwo = playerTwoName.value;
         if (playerOne === "") {
@@ -42,22 +33,30 @@ const getPlayers = (() => {
         const player1 = Player(playerOne, 'O', true);
         const player2 = Player(playerTwo, 'X', false);
         removeMain();
-        console.log({player1, player2});
-    });
+        console.log({ player1, player2 });
+
+        const winCombos = [
+            [0, 1, 2],
+            [0, 3, 6],
+            [3, 4, 5],
+            [6, 7, 8],
+            [1, 4, 7],
+            [2, 4, 6],
+            [2, 5, 8],
+            [0, 4, 8]
+        ];
+
+        let board = [];
+
+    })();
+});
+
+const displayController = (() => {
+    gameBlocks.forEach(gameBlocks => {
+        gameBlocks.textContent = "";
+    })
+
 })();
-
-
-
-
-//object to control the flow of the game
-const gameBoard = (() => {
-
-
-
-    let boardArray = [];
-    return { boardArray };
-})();
-
 
 function removeMain() {
     userMain.remove();
