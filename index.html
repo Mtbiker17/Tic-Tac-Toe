@@ -49,25 +49,33 @@
             </div>
             <div id='boardDisplay'>
                 <h2 id='gameTitle'>Tic-Tac-Toe</h2>
+                <div id='playerContainer'>
+                    <div class='playerDisplay' id='p1'></div>
+                    <div class='playerDisplay'id='p2'></div>
+                </div>
                 <div id='gameContainer'>
                     <table>
                         <tr>
-                            <td id='blockZero' data-block></td>
-                            <td id="blockOne" class='vertical' data-block></td>
-                            <td id='blockTwo' data-block></td>
+                            <td id='0' data-block></td>
+                            <td id="1" class='vertical' data-block></td>
+                            <td id='2' data-block></td>
                         </tr>
                         <tr>
-                            <td id='blockThree' class="horizontal" data-block></td>
-                            <td id='blockFour' class="vertical horizontal" data-block></td>
-                            <td id='blockFive' class="horizontal" data-block></td>
+                            <td id='3' class="horizontal" data-block></td>
+                            <td id='4' class="vertical horizontal" data-block></td>
+                            <td id='5' class="horizontal" data-block></td>
                         </tr>
                         <tr>
-                            <td id='blockSix' data-block></td>
-                            <td id='blockSeven' class="vertical" data-block></td>
-                            <td id='blockEight' data-block></td>
+                            <td id='6' data-block></td>
+                            <td id='7' class="vertical" data-block></td>
+                            <td id='8' data-block></td>
                         </tr>
                     </table>
+                </div><br><br><br><br>
+                <div id='resetContainer'>
+                    <button type='submit' id='restart'>Restart</button>
                 </div>
+                
             </div>
         </div>
     </div>
