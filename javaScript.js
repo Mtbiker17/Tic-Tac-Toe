@@ -35,17 +35,30 @@ submitButton.addEventListener('click', () => {
         removeMain();
         console.log({ player1, player2 });
 
+        //rotate player 1 and player 2 turns
         if (play === true) {
             gameBlocks.forEach(gameBlocks => {
                 gameBlocks.textContent = "";
             });
             gameBlocks.forEach(block => {
                 block.addEventListener('click', (e) => {
-                    if(e.target.textContent === 'O' || e.target.textContent === 'X'){
+                    if (e.target.textContent === 'O' || e.target.textContent === 'X') {
                         return;
                     }
-                    if(player1.turn === true)
-                    e.target.textContent = `${player1.letter}`;
+                    if (player1.turn === true && player2.turn === false) {
+                        e.target.textContent = `${player1.letter}`;
+                        player1.turn = false;
+                        player2.turn = true;
+                        boardX.push(parseInt(e.target.id));
+                        console.log(boardX);
+
+                    } else if (player2.turn === true && player1.turn === false){
+                        e.target.textContent = `${player2.letter}`;
+                        player1.turn = true;
+                        player2.turn = false;
+                        boardY.push(parseInt(e.target.id));
+                        console.log(boardY);
+                    }
 
                 })
             })
@@ -62,56 +75,57 @@ submitButton.addEventListener('click', () => {
             [0, 4, 8]
         ];
 
-        let board = [];
+        let boardX = [];
+        let boardY = [];
 
     })();
+    return (player1, player2);
 });
 
 const displayController = (() => {
-    gameBlocks.forEach(gameBlocks => {
-        gameBlocks.textContent = "";
-    })
+    let playerContainer = document.getElementById('playerContainer');
+    let restart = document.getElementById('restart');
+    let resetContainer = document.getElementById('resetContainer');
+    let p1 = document.getElementById('p1');
+    let p2 = document.getElementById('p2');
+
+    removeMain = () => {
+        userMain.remove();
+        playerInfo.remove();
+        computerInfo.remove();
+        boardDisplay.style.transitionDuration = "1s";
+        boardDisplay.style.width = "100%";
+        boardDisplay.style.height = "100%";
+        playerContainer.style.display = "flex";
+        resetContainer.style.display = 'flex';
+    };
+
+
+    playerVPlayer.addEventListener('click', () => {
+        userMain.style.display = "none";
+        playerInfo.style.display = "block";
+    });
+
+    playerVComputer.addEventListener('click', () => {
+        userMain.style.display = "none";
+        computerInfo.style.display = "block";
+    });
+
+    backToMain.addEventListener('click', () => {
+        userMain.style.display = "block";
+        playerInfo.style.display = "none";
+    });
+
+    backToMain2.addEventListener('click', () => {
+        userMain.style.display = "block";
+        computerInfo.style.display = "none";
+    });
+
+    restart.addEventListener('click', () => {
+        
+    });
+
 })();
-
-function removeMain() {
-    userMain.remove();
-    playerInfo.remove();
-    computerInfo.remove();
-    boardDisplay.style.transitionDuration = "1s";
-    boardDisplay.style.width = "100%";
-    boardDisplay.style.height = "100%";
-}
-
-playerVPlayer.addEventListener('click', () => {
-    userMain.style.display = "none";
-    playerInfo.style.display = "block";
-});
-
-playerVComputer.addEventListener('click', () => {
-    userMain.style.display = "none";
-    computerInfo.style.display = "block";
-});
-
-backToMain.addEventListener('click', () => {
-    userMain.style.display = "block";
-    playerInfo.style.display = "none";
-});
-
-backToMain2.addEventListener('click', () => {
-    userMain.style.display = "block";
-    computerInfo.style.display = "none";
-});
-
-
-/*const blockZero = document.getElementById('blockZero');
-const blockOne = document.getElementById('blockOne');
-const blockTwo = document.getElementById('blockTwo');
-const blockThree = document.getElementById('blockThree');
-const blockFour = document.getElementById('blockFour');
-const blockFive = document.getElementById('blockFive');
-const blockSix = document.getElementById('blockSix');
-const blockSeven = document.getElementById('blockSeven');
-const blockEight = document.getElementById('blockEight');*/
 
 /*submitButton2.addEventListener('click', () => {
        let userName = playerVersusComputerName.value;
