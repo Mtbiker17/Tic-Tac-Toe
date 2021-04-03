@@ -67,10 +67,6 @@ body {
     margin-top: 30%;
 }
 
-#gameContainer {
-    margin-top: 10%;
-}
-
 #playerContainer {
     flex-direction: row;
     justify-content: center;
@@ -86,8 +82,8 @@ body {
 #resetContainer {
     display: none;
     justify-content: center;
-    
 }
+
 #gameTitle {
     font-size: 400%;
 }
