@@ -16,7 +16,9 @@ const gameBlocks = document.querySelectorAll('[data-block]');
 let play = false;
 
 submitButton.addEventListener('click', () => {
-    play = true;
+    let play = true;
+    let board = [];
+    let win = 0;
     const Gameboard = (() => {
         const Player = (name, letter, turn) => {
             return { name, letter, turn };
@@ -39,6 +41,7 @@ submitButton.addEventListener('click', () => {
         if (play === true) {
             gameBlocks.forEach(gameBlocks => {
                 gameBlocks.textContent = "";
+                board.push("");
             });
             gameBlocks.forEach(block => {
                 block.addEventListener('click', (e) => {
@@ -49,23 +52,28 @@ submitButton.addEventListener('click', () => {
                         e.target.textContent = `${player1.letter}`;
                         player1.turn = false;
                         player2.turn = true;
-                        boardX.push(parseInt(e.target.id));
-                        console.log(boardX);
+                        board.splice(e.target.id, 1, player1.letter);
+                        console.log(board);
 
-                    } else if (player2.turn === true && player1.turn === false){
+                        board.forEach(play => {
+                            console.log(board.indexOf("O"))
+                        })
+
+                    } else if (player2.turn === true && player1.turn === false) {
                         e.target.textContent = `${player2.letter}`;
                         player1.turn = true;
                         player2.turn = false;
-                        boardY.push(parseInt(e.target.id));
-                        console.log(boardY);
+                        board.splice(e.target.id, 1, player2.letter);
+                        console.log(board);
                     }
-
                 })
             })
-        }
+        };
+
+
 
         const winCombos = [
-            [0, 1, 2],
+            [0, 1, 2, "", "", "", "", "", ""],
             [0, 3, 6],
             [3, 4, 5],
             [6, 7, 8],
@@ -75,11 +83,22 @@ submitButton.addEventListener('click', () => {
             [0, 4, 8]
         ];
 
-        let boardX = [];
-        let boardY = [];
+        const checkWinner = (winCombos, board) => {
+            board.forEach(play => {
+                if (play.value === "O") {
+                    console.log(play[index])
+                }
+            })
+
+            winCombos.forEach(combo => {
+                combo.join();
+                console.log(combo.join());
+            })
+        };
+
+
 
     })();
-    return (player1, player2);
 });
 
 const displayController = (() => {
@@ -122,7 +141,7 @@ const displayController = (() => {
     });
 
     restart.addEventListener('click', () => {
-        
+
     });
 
 })();
