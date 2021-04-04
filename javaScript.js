@@ -37,10 +37,9 @@ submitButton.addEventListener('click', () => {
         removeMain();
         console.log({ player1, player2 });
 
-        //rotate player 1 and player 2 turns
+        //rotate player 1 and player 2 turns, push into array and compare winning combos
         if (play === true) {
             gameBlocks.forEach(gameBlocks => {
-                gameBlocks.textContent = "";
                 board.push("");
             });
             gameBlocks.forEach(block => {
@@ -53,11 +52,14 @@ submitButton.addEventListener('click', () => {
                         player1.turn = false;
                         player2.turn = true;
                         board.splice(e.target.id, 1, player1.letter);
-                        console.log(board);
-
-                        board.forEach(play => {
-                            console.log(board.indexOf("O"))
-                        })
+                        console.log(board)
+                        let indexesO = [], i;
+                        for (i = 0; i < board.length; i++)
+                            if (board[i] === "O") {
+                                indexesO.push(i);
+                            }
+                        console.log(indexesO);
+                        checkWinner(indexesO);
 
                     } else if (player2.turn === true && player1.turn === false) {
                         e.target.textContent = `${player2.letter}`;
@@ -65,6 +67,13 @@ submitButton.addEventListener('click', () => {
                         player2.turn = false;
                         board.splice(e.target.id, 1, player2.letter);
                         console.log(board);
+                        let indexesX = [], i;
+                        for (i = 0; i < board.length; i++)
+                            if (board[i] === "X") {
+                                indexesX.push(i);
+                            }
+                        console.log(indexesX);
+                        checkWinner(indexesX);
                     }
                 })
             })
@@ -73,7 +82,7 @@ submitButton.addEventListener('click', () => {
 
 
         const winCombos = [
-            [0, 1, 2, "", "", "", "", "", ""],
+            [0, 1, 2],
             [0, 3, 6],
             [3, 4, 5],
             [6, 7, 8],
@@ -82,22 +91,14 @@ submitButton.addEventListener('click', () => {
             [2, 5, 8],
             [0, 4, 8]
         ];
-
-        const checkWinner = (winCombos, board) => {
-            board.forEach(play => {
-                if (play.value === "O") {
-                    console.log(play[index])
+//not functioning yet
+        const checkWinner = (indexes) => {
+            winCombos.forEach(combo => {
+                if (indexes === combo) {
+                    console.log('winO')
                 }
             })
-
-            winCombos.forEach(combo => {
-                combo.join();
-                console.log(combo.join());
-            })
         };
-
-
-
     })();
 });
 
@@ -146,7 +147,9 @@ const displayController = (() => {
 
 })();
 
-/*submitButton2.addEventListener('click', () => {
+/*
+
+submitButton2.addEventListener('click', () => {
        let userName = playerVersusComputerName.value;
        let difficultyChoice = difficulty.value;
        if (userName === "") {
