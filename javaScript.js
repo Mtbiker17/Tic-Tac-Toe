@@ -18,7 +18,6 @@ let play = false;
 submitButton.addEventListener('click', () => {
     let play = true;
     let board = [];
-    let win = 0;
     const Gameboard = (() => {
         const Player = (name, letter, turn) => {
             return { name, letter, turn };
@@ -94,8 +93,11 @@ submitButton.addEventListener('click', () => {
 //not functioning yet
         const checkWinner = (indexes) => {
             winCombos.forEach(combo => {
-                if (indexes === combo) {
-                    console.log('winO')
+                target = combo;
+                const check = (indexes, combo) => combo.every(v => indexes.includes(v));
+                if(check(indexes, combo) === true){
+                    console.log('win');
+                    return;
                 }
             })
         };
