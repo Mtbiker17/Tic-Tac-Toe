@@ -13,12 +13,11 @@ const submitButton2 = document.getElementById('submitButton2');
 const boardDisplay = document.getElementById('boardDisplay');
 const difficulty = document.getElementById('difficulty');
 const gameBlocks = document.querySelectorAll('[data-block]');
-let play = false;
 
 submitButton.addEventListener('click', () => {
-    let play = true;
-    let board = [];
     const Gameboard = (() => {
+        let play = true;
+        let board = [];
         const Player = (name, letter, turn) => {
             return { name, letter, turn };
         };
@@ -33,7 +32,7 @@ submitButton.addEventListener('click', () => {
         }
         const player1 = Player(playerOne, 'O', true);
         const player2 = Player(playerTwo, 'X', false);
-        removeMain();
+        displayController.removeMain();
         console.log({ player1, player2 });
 
         //rotate player 1 and player 2 turns, push into array and compare winning combos
@@ -43,9 +42,10 @@ submitButton.addEventListener('click', () => {
             });
             gameBlocks.forEach(block => {
                 block.addEventListener('click', (e) => {
-                    if (e.target.textContent === 'O' || e.target.textContent === 'X') {
+                    if (e.target.textContent === 'O' || e.target.textContent === 'X' || play === false) {
                         return;
                     }
+                    console.log(play)
                     if (player1.turn === true && player2.turn === false) {
                         e.target.textContent = `${player1.letter}`;
                         player1.turn = false;
@@ -58,7 +58,7 @@ submitButton.addEventListener('click', () => {
                                 indexesO.push(i);
                             }
                         console.log(indexesO);
-                        checkWinner(indexesO);
+                        checkWinner(indexesO, player1.name);
 
                     } else if (player2.turn === true && player1.turn === false) {
                         e.target.textContent = `${player2.letter}`;
@@ -72,13 +72,12 @@ submitButton.addEventListener('click', () => {
                                 indexesX.push(i);
                             }
                         console.log(indexesX);
-                        checkWinner(indexesX);
+                        checkWinner(indexesX, player2.name);
+                        console.log(play)
                     }
                 })
             })
         };
-
-
 
         const winCombos = [
             [0, 1, 2],
@@ -90,14 +89,13 @@ submitButton.addEventListener('click', () => {
             [2, 5, 8],
             [0, 4, 8]
         ];
-//not functioning yet
-        const checkWinner = (indexes) => {
+
+        const checkWinner = (indexes, player) => {
             winCombos.forEach(combo => {
-                target = combo;
                 const check = (indexes, combo) => combo.every(v => indexes.includes(v));
-                if(check(indexes, combo) === true){
-                    console.log('win');
-                    return;
+                if (check(indexes, combo) === true) {
+                    console.log('winner!', player);
+                    displayController.winnerScreen();
                 }
             })
         };
@@ -105,13 +103,14 @@ submitButton.addEventListener('click', () => {
 });
 
 const displayController = (() => {
+    let play = false;
     let playerContainer = document.getElementById('playerContainer');
     let restart = document.getElementById('restart');
     let resetContainer = document.getElementById('resetContainer');
     let p1 = document.getElementById('p1');
     let p2 = document.getElementById('p2');
 
-    removeMain = () => {
+   const removeMain = () => {
         userMain.remove();
         playerInfo.remove();
         computerInfo.remove();
@@ -121,6 +120,11 @@ const displayController = (() => {
         playerContainer.style.display = "flex";
         resetContainer.style.display = 'flex';
     };
+
+    const winnerScreen = (player) => {
+        console.log('winnerscreen')
+        console.log(player);
+    }
 
 
     playerVPlayer.addEventListener('click', () => {
@@ -146,7 +150,7 @@ const displayController = (() => {
     restart.addEventListener('click', () => {
 
     });
-
+    return { winnerScreen, removeMain };
 })();
 
 /*
