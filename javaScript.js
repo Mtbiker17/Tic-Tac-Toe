@@ -95,7 +95,7 @@ submitButton.addEventListener('click', () => {
                 const check = (indexes, combo) => combo.every(v => indexes.includes(v));
                 if (check(indexes, combo) === true) {
                     console.log('winner!', player);
-                    displayController.winnerScreen();
+                    displayController.winnerScreen(player);
                 }
             })
         };
@@ -150,7 +150,7 @@ const displayController = (() => {
     restart.addEventListener('click', () => {
 
     });
-    return { winnerScreen, removeMain };
+    return { winnerScreen, removeMain, play };
 })();
 
 /*
