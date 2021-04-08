@@ -104,7 +104,7 @@ submitButton.addEventListener('click', () => {
 });
 
 //player versus computer activation;
-/*
+
 submitButton2.addEventListener('click', () => {
     let play = true;
     let board = [];
@@ -129,16 +129,15 @@ submitButton2.addEventListener('click', () => {
         console.log(player, computer, difficultyChoice);
         displayController.removeMain();
         if (difficultyChoice === "easy") {
-            easy(player, computer);
+            difficultyFunctions.easy(player, computer, board);
         } else if (difficultyChoice === "normal") {
             normal(player, computer);
         } else if (difficultyChoice === "impossible") {
             impossible(player, computer)
         }
-        //checkWinner()
     })();
 });
-*/
+
 
 const displayController = (() => {
     let play = false;
@@ -198,18 +197,39 @@ const displayController = (() => {
     return { winnerScreen, removeMain, playerDisplay, play };
 })();
 
-/*const difficultyFunctions = (() => {
-    const easy = (player, computer) => {
+const difficultyFunctions = (() => {
+    const winCombos = [
+        [0, 1, 2],
+        [0, 3, 6],
+        [3, 4, 5],
+        [6, 7, 8],
+        [1, 4, 7],
+        [2, 4, 6],
+        [2, 5, 8],
+        [0, 4, 8]
+    ];
+
+    const checkWinner = (indexes, player) => {
+        winCombos.forEach(combo => {
+            const check = (indexes, combo) => combo.every(v => indexes.includes(v));
+            if (check(indexes, combo) === true) {
+                displayController.winnerScreen(player);
+                play = displayController.play;
+            }
+        })
+    };
+
+    const easy = (player, computer, board) => {
         gameBlocks.forEach(block => {
             block.addEventListener('click', (e) => {
-                if (e.target.textContent === 'O' || e.target.textContent === 'X' || play === false) {
+                if (e.target.textContent === 'O' || e.target.textContent === 'X') {
                     return;
                 }
-                if (player1.turn === true && computer.turn === false) {
-                    e.target.textContent = `${player1.letter}`;
-                    player1.turn = false;
-                    player2.turn = true;
-                    board.splice(e.target.id, 1, player1.letter);
+                if (player.turn === true && computer.turn === false) {
+                    e.target.textContent = `${player.letter}`;
+                    player.turn = false;
+                    computer.turn = true;
+                    board.splice(e.target.id, 1, player.letter);
                     console.log(board)
                     let indexesO = [], i;
                     for (i = 0; i < board.length; i++)
@@ -217,13 +237,20 @@ const displayController = (() => {
                             indexesO.push(i);
                         }
                     console.log(indexesO);
-                    checkWinner(indexesO, player1.name);
+                    checkWinner(indexesO, player.name);
 
-                } else if (player2.turn === true && player1.turn === false) {
-                    e.target.textContent = `${player2.letter}`;
-                    player1.turn = true;
-                    player2.turn = false;
-                    board.splice(e.target.id, 1, player2.letter);
+                }
+                if (computer.turn === true) {
+                    target = Math.floor(Math.random() * (8 - 1 + 1) + 1);
+                    console.log(target)
+                    player.turn = true;
+                    computer.turn = false;
+                    //write a function here to not allow for repeat squares.
+                    if (board[target] === "O" || board[target] === "X"){
+                        target = target = Math.floor(Math.random() * (8 - 1 + 1) + 1);
+                    } else {
+                        board.splice(target, 1, computer.letter);
+                    }
                     console.log(board);
                     let indexesX = [], i;
                     for (i = 0; i < board.length; i++)
@@ -231,11 +258,18 @@ const displayController = (() => {
                             indexesX.push(i);
                         }
                     console.log(indexesX);
-                    checkWinner(indexesX, player2.name);
+                    gameBlocks.forEach(block => {
+                        for (i = 0; i < board.length; i++) {
+                            move = block.id;
+                            block.textContent = board[move];
+                        }
+
+                    })
+                    checkWinner(indexesX, computer.name);
                 }
+
             })
         })
     }
-    return { easy, normal, impossible };
+    return { easy };
 })();
-*/
