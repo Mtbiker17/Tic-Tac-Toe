@@ -164,8 +164,8 @@ const displayController = (() => {
     const playerDisplay = (player1, player2) => {
         let p1 = document.getElementById('p1');
         let p2 = document.getElementById('p2');
-        p1.textContent = `Player 1: ${player1} - "O"`;
-        p2.textContent = `Player 2: ${player2} - "X"`;
+        p1.textContent = `${player1}  "O"`;
+        p2.textContent = `${player2}  "X"`;
     };
 
     const winnerScreen = (player, move) => {
