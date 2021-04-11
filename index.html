@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Tic-Tac-Toe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,9 +14,9 @@
             <div id='userMain'>
                 <div id='userMainWrap'>
                     <h1>Choose Game Mode</h1>
-                    <button id='playerVPlayer'>Player Versus Player</button>
+                    <button class='menuButton' id='playerVPlayer'>Player Versus Player</button>
                     <br><br><br>
-                    <button id='playerVComputer'>Player Versus Computer</button>
+                    <button class='menuButton' id='playerVComputer'>Player Versus Computer</button>
                 </div>
             </div>
             <div id='playerInfo'>
@@ -26,9 +27,9 @@
                     <label>Player Two Name:</label>
                     <input type="text" id="playerTwoName"><br><br>
                     <br><br>
-                    <button type='submit' id='submitButton'>Start Game!</button>
+                    <button type='submit' class='menuButton' id='submitButton'>Start Game!</button>
                     <br><br>
-                    <button type='submit' id='backToMain'>Back To Main Page</button>
+                    <button type='submit' class='menuButton' id='backToMain'>Back To Main Page</button>
                 </div>
             </div>
             <div id='computerInfo'>
@@ -39,18 +40,16 @@
                     <label>Select Difficulty:</label>
                     <select id="difficulty">
                         <option value='easy'>Easy</option>
-                        <option value='medium'>Normal</option>
-                        <option value='impossible'>Impossible</option>
                     </select><br><br>
-                    <button type='submit' id='submitButton2'>Start Game!</button><br><br>
-                    <button type='submit' id='backToMain2'>Back To Main Page</button>
+                    <button type='submit' class='menuButton' id='submitButton2'>Start Game!</button><br><br>
+                    <button type='submit' class='menuButton' id='backToMain2'>Back To Main Page</button>
                 </div>
             </div>
             <div id='boardDisplay'>
                 <h2 id='gameTitle'>Tic-Tac-Toe</h2>
                 <div id='playerContainer'>
                     <div class='playerDisplay' id='p1'></div>
-                    <div class='playerDisplay'id='p2'></div>
+                    <div class='playerDisplay' id='p2'></div>
                 </div>
                 <div id='gameContainer'>
                     <table>
@@ -73,12 +72,22 @@
                 </div><br><br><br><br>
                 <div class="playerDisplay" id='winner'></div><br><br><br><br>
                 <div id='resetContainer'>
-                    <button type='submit' id='restart'>Restart</button>
+                    <button type='submit' class='menuButton' id='restart'>Restart</button>
                 </div>
-                
+
             </div>
         </div>
     </div>
+    <footer id="footer">
+        <div id='footerWrap'>
+            <div id="signatureContainer">
+                <div class='sign'>Created by: Devin</div>
+                <a href="https://github.com/Mtbiker17/Tic-Tac-Toe">
+                    <img src="GitHub-Mark-32px.png"></a>
+            </div>
+
+        </div>
+    </footer>
 </body>
 <script type="text/javascript" src="javaScript.js"></script>
 

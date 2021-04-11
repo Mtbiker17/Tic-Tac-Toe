@@ -6,15 +6,15 @@ html {
 
 body {
     height: 100%;
-    margin: 5px;
     padding: 0;
+    margin: 0;
 }
 
 #mainContainer {
     text-align: center;
     font-family: 'Tahoma', sans-serif;
     height: 100%;
-    margin: 5px;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 #playerInfoScreen {
@@ -24,6 +24,8 @@ body {
     align-items: center;
     height: 100%;
     width: 100%;
+    background: rgb(243,116,134);
+    background: linear-gradient(180deg, rgba(243,116,134,1) 21%, rgba(243,188,84,1) 85%);
 }
 
 #userMain {
@@ -52,7 +54,6 @@ body {
 #boardDisplay {
     height: 100%;
     width: 50%;
-    background-color: rgb(255, 199, 0);
 }
 
 #userMainWrap {
@@ -61,10 +62,16 @@ body {
 
 #infoContainer {
     margin-top: 30%;
+    font-size: 120%;
+}
+
+#gameContainer {
+    font-size: 160%;
 }
 
 #computerContainer {
     margin-top: 30%;
+    font-size: 120%;
 }
 
 #playerContainer {
@@ -77,6 +84,8 @@ body {
 .playerDisplay {
     padding-right: 20%;
     padding-left: 20%;
+    font-size: 140%;
+    font-weight: bolder;
 }
 
 #resetContainer {
@@ -86,6 +95,35 @@ body {
 
 #gameTitle {
     font-size: 400%;
+}
+
+.menuButton {
+    display: inline-block;
+    padding: 0.35em 1.2em;
+    border: 0.1em solid black;
+    margin: 0 0.3em 0.3em 0;
+    border-radius: 0.12em;
+    border-radius: 20px;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-weight:300;
+    color :black;
+    background-color: rgb(238, 235, 235);
+    text-align:center;
+    transition: all 0.2s;
+    height: 65px;
+    width: 35%;
+    font-size: 100%;
+}
+
+.menuButton:hover {
+    color:white;
+    background-color:black;
+}
+
+#restart {
+    width: 20%;
+    font-size: 150%;
 }
 
 td {
@@ -102,4 +140,37 @@ table {
 .horizontal {
   border-top: 2px solid black;
   border-bottom: 2px solid black;
+}
+
+#footer {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 110%;
+  color: black;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #f3bc54;
+  text-align: center;
+}
+
+#footerWrap {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.sign {
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+#signatureContainer {
+    display: flex;
+    flex-direction: row;
+    margin: 0%
 }
