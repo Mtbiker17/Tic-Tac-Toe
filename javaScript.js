@@ -19,6 +19,7 @@ submitButton.addEventListener('click', () => {
     const Gameboard = (() => {
         let play = true;
         let board = [];
+        let move = 0;
         const Player = (name, letter, turn) => {
             return { name, letter, turn };
         };
@@ -60,7 +61,9 @@ submitButton.addEventListener('click', () => {
                                 indexesO.push(i);
                             }
                         console.log(indexesO);
-                        checkWinner(indexesO, player1.name);
+                        move++;
+                        console.log(move);
+                        checkWinner(indexesO, player1.name, move);
 
                     } else if (player2.turn === true && player1.turn === false) {
                         e.target.textContent = `${player2.letter}`;
@@ -74,7 +77,9 @@ submitButton.addEventListener('click', () => {
                                 indexesX.push(i);
                             }
                         console.log(indexesX);
-                        checkWinner(indexesX, player2.name);
+                        move++
+                        console.log(move)
+                        checkWinner(indexesX, player2.name, move);
                     }
                 })
             })
@@ -91,11 +96,11 @@ submitButton.addEventListener('click', () => {
             [0, 4, 8]
         ];
 
-        const checkWinner = (indexes, player) => {
+        const checkWinner = (indexes, player, move) => {
             winCombos.forEach(combo => {
                 const check = (indexes, combo) => combo.every(v => indexes.includes(v));
                 if (check(indexes, combo) === true) {
-                    displayController.winnerScreen(player);
+                    displayController.winnerScreen(player, move);
                     play = displayController.play;
                 }
             })
@@ -104,7 +109,6 @@ submitButton.addEventListener('click', () => {
 });
 
 //player versus computer activation;
-
 submitButton2.addEventListener('click', () => {
     let play = true;
     let board = [];
@@ -164,10 +168,14 @@ const displayController = (() => {
         p2.textContent = `Player 2: ${player2} - "X"`;
     };
 
-    const winnerScreen = (player) => {
+    const winnerScreen = (player, move) => {
         let winner = document.getElementById('winner');
-        winner.textContent = `${player} is the winner!`;
-    }
+        if (move === 9) {
+            winner.textContent = "It's a tie!";
+        } else {
+            winner.textContent = `${player} is the winner!`;
+        }
+    };
 
 
     playerVPlayer.addEventListener('click', () => {
