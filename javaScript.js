@@ -241,15 +241,18 @@ const difficultyFunctions = (() => {
 
                 }
                 if (computer.turn === true) {
-                    target = Math.floor(Math.random() * (8 - 1 + 1) + 1);
-                    console.log(target)
-                    player.turn = true;
-                    computer.turn = false;
-                    //write a function here to not allow for repeat squares.
-                    if (board[target] === "O" || board[target] === "X"){
-                        target = target = Math.floor(Math.random() * (8 - 1 + 1) + 1);
-                    } else {
+                    let target = Math.floor(Math.random() * (8 - 1 + 1) + 1);
+                    console.log(target);
+                    if (board[target] === "") {
                         board.splice(target, 1, computer.letter);
+                    } else {
+                        for (b = 0; b < board.length; b++) {
+                            target = Math.floor(Math.random() * (8 - 1 + 1) + 1);
+                            if (board[target] === "") {
+                                board.splice(target, 1, computer.letter);
+                                break;
+                            }
+                        }
                     }
                     console.log(board);
                     let indexesX = [], i;
@@ -265,9 +268,10 @@ const difficultyFunctions = (() => {
                         }
 
                     })
+                    player.turn = true;
+                    computer.turn = false;
                     checkWinner(indexesX, computer.name);
                 }
-
             })
         })
     }
