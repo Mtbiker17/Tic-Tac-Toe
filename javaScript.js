@@ -183,7 +183,6 @@ const displayController = (() => {
         }
     };
 
-
     playerVPlayer.addEventListener('click', () => {
         userMain.style.display = "none";
         playerInfo.style.display = "block";
@@ -223,17 +222,26 @@ const difficultyFunctions = (() => {
         [0, 4, 8]
     ];
 
-    const checkWinner = (indexes, player) => {
+    const checkWinner = (indexes, player, move) => {
+        console.log(move);
         winCombos.forEach(combo => {
             const check = (indexes, combo) => combo.every(v => indexes.includes(v));
             if (check(indexes, combo) === true) {
-                displayController.winnerScreen(player);
+                win = true;
+                displayController.winnerScreen(player, move, win);
                 play = displayController.play;
+            }
+            if (move === 9 && win == true) {
+                return;
+            } else {
+                win = false;
+                displayController.winnerScreen(player, move, win);
             }
         })
     };
 
     const easy = (player, computer, board) => {
+        let move = 0;
         gameBlocks.forEach(block => {
             block.addEventListener('click', (e) => {
                 if (e.target.textContent === 'O' || e.target.textContent === 'X') {
@@ -241,6 +249,7 @@ const difficultyFunctions = (() => {
                 }
                 if (player.turn === true && computer.turn === false) {
                     e.target.textContent = `${player.letter}`;
+                    move++
                     player.turn = false;
                     computer.turn = true;
                     board.splice(e.target.id, 1, player.letter);
@@ -251,7 +260,7 @@ const difficultyFunctions = (() => {
                             indexesO.push(i);
                         }
                     console.log(indexesO);
-                    checkWinner(indexesO, player.name);
+                    checkWinner(indexesO, player.name, move);
 
                 }
                 if (computer.turn === true) {
@@ -276,15 +285,13 @@ const difficultyFunctions = (() => {
                         }
                     console.log(indexesX);
                     gameBlocks.forEach(block => {
-                        for (i = 0; i < board.length; i++) {
-                            move = block.id;
-                            block.textContent = board[move];
-                        }
-
+                        value = block.id;
+                        block.textContent = board[value];
                     })
                     player.turn = true;
                     computer.turn = false;
-                    checkWinner(indexesX, computer.name);
+                    move++
+                    checkWinner(indexesX, computer.name, move);
                 }
             })
         })
