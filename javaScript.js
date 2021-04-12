@@ -48,19 +48,16 @@ submitButton.addEventListener('click', () => {
                     if (e.target.textContent === 'O' || e.target.textContent === 'X' || play === false) {
                         return;
                     }
-                    console.log(play)
                     if (player1.turn === true && player2.turn === false) {
                         e.target.textContent = `${player1.letter}`;
                         player1.turn = false;
                         player2.turn = true;
                         board.splice(e.target.id, 1, player1.letter);
-                        console.log(board)
                         let indexesO = [], i;
                         for (i = 0; i < board.length; i++)
                             if (board[i] === "O") {
                                 indexesO.push(i);
                             }
-                        console.log(indexesO);
                         move++;
                         console.log(move);
                         checkWinner(indexesO, player1.name, move);
@@ -70,13 +67,11 @@ submitButton.addEventListener('click', () => {
                         player1.turn = true;
                         player2.turn = false;
                         board.splice(e.target.id, 1, player2.letter);
-                        console.log(board);
                         let indexesX = [], i;
                         for (i = 0; i < board.length; i++)
                             if (board[i] === "X") {
                                 indexesX.push(i);
                             }
-                        console.log(indexesX);
                         move++
                         console.log(move)
                         checkWinner(indexesX, player2.name, move);
@@ -100,8 +95,15 @@ submitButton.addEventListener('click', () => {
             winCombos.forEach(combo => {
                 const check = (indexes, combo) => combo.every(v => indexes.includes(v));
                 if (check(indexes, combo) === true) {
-                    displayController.winnerScreen(player, move);
+                    win = true;
+                    displayController.winnerScreen(player, move, win);
                     play = displayController.play;
+                }
+                if (move === 9 && win == true) {
+                    return;
+                } else {
+                    win = false;
+                    displayController.winnerScreen(player, move, win);
                 }
             })
         };
@@ -168,12 +170,16 @@ const displayController = (() => {
         p2.textContent = `${player2}  "X"`;
     };
 
-    const winnerScreen = (player, move) => {
+    const winnerScreen = (player, move, win) => {
+        console.log(win)
         let winner = document.getElementById('winner');
-        if (move === 9) {
-            winner.textContent = "It's a tie!";
-        } else {
+        if (win === true) {
             winner.textContent = `${player} is the winner!`;
+            return;
+        }
+        if (move === 9 && win === false) {
+            winner.textContent = "It's a tie!";
+
         }
     };
 
